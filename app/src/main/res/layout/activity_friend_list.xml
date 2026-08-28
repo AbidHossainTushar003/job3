@@ -1,133 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/rootLayout"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA">
 
+    android:background="@color/background">
 
     <!-- Main Content -->
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
 
+        android:orientation="vertical">
 
         <!-- Header -->
 
         <com.google.android.material.card.MaterialCardView
+
+            android:id="@+id/header"
+
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginBottom="8dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="0dp"
-            android:backgroundTint="@color/orange">
 
+            android:backgroundTint="@color/orange"
+
+            app:cardCornerRadius="0dp"
+            app:cardElevation="8dp">
 
             <TextView
+
+                android:id="@+id/tvHeader"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:text="All Users"
+
                 android:textSize="26sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"
-                android:gravity="center_vertical"
-                android:paddingStart="24dp"
-                android:fontFamily="sans-serif-medium"/>
 
+                android:textColor="@color/white"
+
+                android:gravity="center_vertical"
+
+                android:fontFamily="sans-serif-medium"
+
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
         </com.google.android.material.card.MaterialCardView>
-
-
 
         <!-- User List -->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="12dp"
-            android:clipToPadding="false"/>
 
+            android:id="@+id/recyclerView"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:layout_weight="1"
+
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
-
-
-
-
-    <!-- My Profile FAB -->
+    <!-- Profile FAB -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+
         android:id="@+id/fabProfile"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:visibility="gone"
+
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="22dp"
-        android:layout_marginBottom="210dp"
+
         android:contentDescription="My Profile"
+
         android:src="@android:drawable/ic_menu_myplaces"
+
         app:backgroundTint="#4CAF50"
         app:tint="@color/white"
         app:elevation="10dp"/>
 
-
-
     <!-- Map FAB -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+
         android:id="@+id/fabMap"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:visibility="gone"
+
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="22dp"
-        android:layout_marginBottom="140dp"
+
         android:contentDescription="Show users on map"
+
         android:src="@android:drawable/ic_dialog_map"
+
         app:backgroundTint="#2196F3"
         app:tint="@color/white"
         app:elevation="10dp"/>
 
-
-
     <!-- Logout FAB -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+
         android:id="@+id/fabLogout"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:visibility="gone"
+
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="22dp"
-        android:layout_marginBottom="70dp"
+
         android:contentDescription="Logout"
+
         android:src="@android:drawable/ic_lock_power_off"
+
         app:backgroundTint="#F44336"
         app:tint="@color/white"
         app:elevation="10dp"/>
 
-
-
-
-    <!-- Main Menu FAB -->
+    <!-- Main FAB -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+
         android:id="@+id/fabMain"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_gravity="bottom|end"
-        android:layout_margin="22dp"
+        android:layout_marginEnd="22dp"
+
         android:contentDescription="Options"
+
         android:src="@android:drawable/ic_menu_more"
+
         app:backgroundTint="@color/orange"
         app:tint="@color/white"
         app:elevation="12dp"/>
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

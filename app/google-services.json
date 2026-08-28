@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "103663558761",
+    "firebase_url": "https://job3final-6dba4-default-rtdb.firebaseio.com",
+    "project_id": "job3final-6dba4",
+    "storage_bucket": "job3final-6dba4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103663558761:android:2546d41ccff119d62a02f8",
+        "android_client_info": {
+          "package_name": "com.example.job3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8JlFNNq7bk0VgpLz_MAJesp9zPqxTZow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

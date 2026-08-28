@@ -5,12 +5,10 @@ plugins {
 
 android {
     namespace = "com.example.job3"
-    compileSdk {
-        version = release(37)
-    }
+    compileSdk = 37
 
     buildFeatures {
-        viewBinding=true
+        viewBinding = true
     }
     defaultConfig {
         applicationId = "com.example.job3"
@@ -42,11 +40,14 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
     implementation(libs.googleid)
     implementation(libs.material)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)

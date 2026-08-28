@@ -1,50 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/rootLayout"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <!-- Google Map -->
 
     <fragment
+
         android:id="@+id/map"
+
         android:name="com.google.android.gms.maps.SupportMapFragment"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-
-
-    <!-- Top Overlay -->
+    <!-- Back Button Container -->
 
     <com.google.android.material.card.MaterialCardView
+
+        android:id="@+id/topBar"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="8dp"
-        android:backgroundTint="@color/white">
 
+        android:layout_gravity="top|start"
+
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+
+        android:backgroundTint="@color/white"
+
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp">
 
         <Button
+
             android:id="@+id/btnBack"
+
             android:layout_width="120dp"
             android:layout_height="52dp"
+
             android:text="Back"
+
             android:textSize="16sp"
             android:textStyle="bold"
+
             android:textColor="@color/white"
+
             android:backgroundTint="@color/orange"
+
             android:drawableStart="@drawable/ic_arrow_back"
             android:drawablePadding="8dp"
-            android:gravity="center"
-            android:padding="0dp"/>
 
+            android:gravity="center"
+
+            android:padding="0dp"
+
+            android:minHeight="0dp"
+            android:minWidth="0dp"/>
 
     </com.google.android.material.card.MaterialCardView>
-
-
 
 </FrameLayout>
