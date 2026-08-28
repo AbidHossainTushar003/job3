@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:padding="28dp"
+    android:background="#F8F9FA">
+
+
+    <!-- Logo Area -->
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        app:cardCornerRadius="55dp"
+        app:cardElevation="8dp"
+
+        android:backgroundTint="@color/orange">
+
+
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:src="@android:drawable/ic_menu_mylocation"
+
+            android:tint="@color/white"
+
+            android:padding="28dp"
+
+            android:contentDescription="Location"/>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+    <!-- Title -->
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Location Sharing"
+
+        android:textSize="30sp"
+        android:textStyle="bold"
+
+        android:textColor="@color/orange"
+
+        android:layout_marginTop="25dp"/>
+
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Welcome Back"
+
+        android:textSize="18sp"
+
+        android:textColor="@color/dark_text"
+
+        android:layout_marginTop="8dp"
+
+        android:layout_marginBottom="35dp"/>
+
+
+
+
+
+
+
+    <!-- Email Field -->
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/etEmail"
+
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+
+            android:hint="Email Address"
+
+            android:inputType="textEmailAddress"
+
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+    <!-- Password Field -->
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="15dp"
+
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/etPassword"
+
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+
+            android:hint="Password"
+
+            android:inputType="textPassword"
+
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+    <!-- Login Button -->
+
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/btnLogin"
+
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+
+        android:text="LOGIN"
+
+        android:textSize="16sp"
+
+        android:textStyle="bold"
+
+        android:textColor="@color/white"
+
+        android:layout_marginTop="30dp"
+
+        android:backgroundTint="@color/orange"
+
+        app:cornerRadius="30dp"/>
+
+
+
+
+
+
+
+
+    <!-- Create Account -->
+
+    <TextView
+
+        android:id="@+id/tvCreateAccount"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Don't have an account? Sign Up"
+
+        android:textColor="@color/orange"
+
+        android:textStyle="bold"
+
+        android:textSize="15sp"
+
+        android:layout_marginTop="28dp"/>
+
+
+
+</LinearLayout>
