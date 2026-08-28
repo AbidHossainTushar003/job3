@@ -6,11 +6,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.job3.databinding.ItemFriendBinding
 import com.example.job3.model.AppUser
 
+/**
+ * Adapter for the RecyclerView in [com.example.job3.FriendListActivity].
+ * Displays a list of [AppUser] entities and handles item click events.
+ *
+ * @param users The initial list of users to display.
+ * @param onItemClick Callback triggered when a user card is tapped.
+ */
 class FriendAdapter(
     private var users: List<AppUser>,
     private val onItemClick: (AppUser) -> Unit
 ) : RecyclerView.Adapter<FriendAdapter.FriendViewHolder>() {
 
+    /**
+     * ViewHolder class that holds references to the views in the item layout.
+     */
     class FriendViewHolder(
         val binding: ItemFriendBinding
     ) : RecyclerView.ViewHolder(binding.root)
@@ -36,6 +46,7 @@ class FriendAdapter(
 
         val user = users[position]
 
+        // Format user details for display
         val displayName = user.displayName
             ?.trim()
             ?.takeIf { it.isNotEmpty() }
@@ -48,6 +59,7 @@ class FriendAdapter(
         holder.binding.tvName.text = displayName
         holder.binding.tvEmail.text = email
 
+        // Setup the click listener for the entire card
         holder.itemView.setOnClickListener {
             onItemClick(user)
         }
@@ -57,6 +69,10 @@ class FriendAdapter(
         return users.size
     }
 
+    /**
+     * Updates the data set and refreshes the UI.
+     * @param newUsers The new list of users to be displayed.
+     */
     fun updateList(newUsers: List<AppUser>) {
 
         users = newUsers
