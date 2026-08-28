@@ -21,6 +21,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import kotlinx.coroutines.launch
 
+/**
+ * Activity that handles the user registration process.
+ * Ensures data validation and requests location permissions before completing account setup.
+ */
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding:
@@ -32,6 +36,10 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient:
             FusedLocationProviderClient
 
+    /**
+     * Launcher for requesting location permissions from the user.
+     * Required to capture coordinates during registration.
+     */
     private val locationPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
@@ -138,6 +146,9 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Collects UI state updates from the ViewModel.
+     */
     private fun observeViewModel() {
 
         lifecycleScope.launch {
@@ -182,6 +193,9 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Checks if location permissions are granted.
+     */
     private fun checkLocationPermission() {
 
         val fineGranted =
@@ -211,6 +225,9 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Captures the user's location to be stored alongside their profile.
+     */
     private fun detectLocationAndSaveUser() {
 
         val fineGranted =
@@ -264,6 +281,9 @@ class SignUpActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Persists the newly registered user's data to the database and navigates to the list screen.
+     */
     private fun saveUser(location: Location) {
 
         val firebaseUser =

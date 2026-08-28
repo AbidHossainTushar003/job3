@@ -21,6 +21,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import kotlinx.coroutines.launch
 
+/**
+ * Activity that handles the user login process.
+ * After a successful sign-in, it requests location permissions and saves the user's current coordinates.
+ */
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
@@ -30,6 +34,10 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient:
             FusedLocationProviderClient
 
+    /**
+     * Launcher for requesting location permissions from the user.
+     * If granted, triggers location detection and user data saving.
+     */
     private val locationPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
@@ -121,6 +129,9 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sets up collectors for ViewModel StateFlows (messages and loading status).
+     */
     private fun observeViewModel() {
 
         lifecycleScope.launch {
@@ -165,6 +176,10 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Checks if location permissions are already granted.
+     * If not, launches the permission request launcher.
+     */
     private fun checkLocationPermission() {
 
         val fineGranted =
@@ -194,6 +209,10 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Uses FusedLocationProviderClient to get the last known or current location.
+     * Upon success, calls [saveUser] to persist data.
+     */
     private fun detectLocationAndSaveUser() {
 
         val fineGranted =
@@ -247,6 +266,10 @@ class SignInActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Saves the authenticated user's information and coordinates to Firestore.
+     * Navigates to [FriendListActivity] on success.
+     */
     private fun saveUser(location: Location) {
 
         val firebaseUser =

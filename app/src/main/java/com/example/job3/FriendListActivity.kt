@@ -20,6 +20,10 @@ import com.example.job3.adapter.FriendAdapter
 import com.example.job3.databinding.ActivityFriendListBinding
 import kotlinx.coroutines.launch
 
+/**
+ * The main activity that displays a list of all registered users.
+ * Provides access to the profile, map, and logout features via a expandable FloatingActionButton menu.
+ */
 class FriendListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFriendListBinding
@@ -28,6 +32,7 @@ class FriendListActivity : AppCompatActivity() {
 
     private lateinit var adapter: FriendAdapter
 
+    /** Tracks whether the FAB menu is currently expanded */
     private var menuOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +87,10 @@ class FriendListActivity : AppCompatActivity() {
         toggleMenu()
     }
 
+    /**
+     * Adjusts layout padding and margins to account for system bars (status bar and navigation bar).
+     * Ensures that the header and FABs are correctly positioned in edge-to-edge mode.
+     */
     private fun setupSystemInsets() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
@@ -144,6 +153,9 @@ class FriendListActivity : AppCompatActivity() {
         ViewCompat.requestApplyInsets(binding.root)
     }
 
+    /**
+     * Helper to update the bottom margin of a FloatingActionButton.
+     */
     private fun setFabBottomMargin(
         view: View,
         margin: Int
@@ -153,6 +165,9 @@ class FriendListActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Converts DP to Pixels.
+     */
     private fun dp(value: Int): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
@@ -161,6 +176,10 @@ class FriendListActivity : AppCompatActivity() {
         ).toInt()
     }
 
+    /**
+     * Initializes the RecyclerView with the [FriendAdapter].
+     * Sets up the click listener to navigate to [GoogleMapActivity] for a specific user.
+     */
     private fun setupRecyclerView() {
 
         adapter = FriendAdapter(emptyList()) { user ->
@@ -183,6 +202,9 @@ class FriendListActivity : AppCompatActivity() {
         binding.recyclerView.clipToPadding = false
     }
 
+    /**
+     * Observes the list of users from the ViewModel and updates the adapter when changes occur.
+     */
     private fun observeUsers() {
 
         lifecycleScope.launch {
@@ -197,6 +219,9 @@ class FriendListActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Toggles the visibility of the sub-menu FloatingActionButtons.
+     */
     private fun toggleMenu() {
 
         menuOpen = !menuOpen

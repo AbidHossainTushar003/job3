@@ -15,6 +15,10 @@ import com.example.job3.ViewModel.AuthViewModel
 import com.example.job3.databinding.ActivityMyProfileBinding
 import kotlinx.coroutines.launch
 
+/**
+ * Activity for viewing and updating the current user's profile information.
+ * It displays the user's email, captured coordinates, and allows changing the display name.
+ */
 class MyProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyProfileBinding
@@ -30,6 +34,7 @@ class MyProfileActivity : AppCompatActivity() {
 
         setupSystemInsets()
 
+        // Fetch user data from Firestore
         viewModel.loadCurrentUser()
 
         observeUser()
@@ -64,6 +69,7 @@ class MyProfileActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
+                    // Refresh local data after update
                     viewModel.loadCurrentUser()
                 }
             }
@@ -74,6 +80,9 @@ class MyProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Handles system bar padding to support edge-to-edge layouts.
+     */
     private fun setupSystemInsets() {
 
         ViewCompat.setOnApplyWindowInsetsListener(
@@ -97,6 +106,9 @@ class MyProfileActivity : AppCompatActivity() {
         ViewCompat.requestApplyInsets(binding.root)
     }
 
+    /**
+     * Observes the user data and operation states from the ViewModel.
+     */
     private fun observeUser() {
 
         lifecycleScope.launch {
@@ -126,6 +138,7 @@ class MyProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Collect loading state to toggle the progress bar
         lifecycleScope.launch {
 
             repeatOnLifecycle(
@@ -147,6 +160,7 @@ class MyProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Collect and display potential error messages
         lifecycleScope.launch {
 
             repeatOnLifecycle(
@@ -168,6 +182,9 @@ class MyProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Utility method to convert density-independent pixels to pixels.
+     */
     private fun dp(value: Int): Int {
 
         return (

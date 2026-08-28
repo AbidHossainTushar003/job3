@@ -22,6 +22,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.launch
 
+/**
+ * Activity that displays a Google Map with markers for all users.
+ * It can highlight a specific user if a USER_ID is passed in the intent extras.
+ */
 class GoogleMapActivity :
     AppCompatActivity(),
     OnMapReadyCallback {
@@ -32,7 +36,10 @@ class GoogleMapActivity :
 
     private val viewModel: AuthViewModel by viewModels()
 
+    /** ID of the user to focus on when the map loads */
     private var targetUserId: String? = null
+    
+    /** Flag to ensure auto-zoom only happens once during the activity lifecycle */
     private var hasZoomedToTarget = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +48,7 @@ class GoogleMapActivity :
         binding = ActivityGoogleMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Retrieve the target user ID if navigation came from a specific friend click
         targetUserId = intent.getStringExtra("USER_ID")
 
         setupSystemInsets()
@@ -53,6 +61,7 @@ class GoogleMapActivity :
 
         viewModel.loadAllUsers()
 
+        // Observe user updates and refresh markers on the map
         lifecycleScope.launch {
 
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -71,6 +80,9 @@ class GoogleMapActivity :
         }
     }
 
+    /**
+     * Configures window insets to handle edge-to-edge display and status bar padding.
+     */
     private fun setupSystemInsets() {
 
         ViewCompat.setOnApplyWindowInsetsListener(
@@ -108,13 +120,17 @@ class GoogleMapActivity :
         ViewCompat.requestApplyInsets(binding.root)
     }
 
+    /**
+     * Called when the map is ready to be used.
+     * Initializes map settings and initial padding.
+     */
     override fun onMapReady(map: GoogleMap) {
 
         googleMap = map
 
         googleMap.uiSettings.isZoomControlsEnabled = true
 
-        // Safe initial map padding.
+        // Safe initial map padding based on current window insets.
         ViewCompat.getRootWindowInsets(binding.root)?.let {
 
             val systemBars = it.getInsets(
@@ -132,6 +148,12 @@ class GoogleMapActivity :
         showUsersOnMap(viewModel.users.value)
     }
 
+    /**
+     * Clears existing markers and adds new markers for all users in the provided list.
+     * Also handles camera animation to focus on the target user or current user.
+     *
+     * @param users The list of [AppUser] to display on the map.
+     */
     private fun showUsersOnMap(
         users: List<AppUser>
     ) {
@@ -209,6 +231,7 @@ class GoogleMapActivity :
             )
         }
 
+        // Determine which location to focus the camera on.
         val focusLocation = if (targetUserId != null) {
             users.find { it.userId == targetUserId }?.let {
                 LatLng(it.latitude, it.longitude)
@@ -225,6 +248,7 @@ class GoogleMapActivity :
             )
         }
 
+        // Only animate camera once to avoid jumping if markers update while the user is browsing
         if (focusLocation != null && !hasZoomedToTarget) {
             hasZoomedToTarget = true
             googleMap.animateCamera(
@@ -236,6 +260,9 @@ class GoogleMapActivity :
         }
     }
 
+    /**
+     * Converts DP value to pixels.
+     */
     private fun dp(value: Int): Int {
 
         return (
